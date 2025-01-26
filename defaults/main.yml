@@ -1,0 +1,14 @@
+---
+
+# Si rpm (commenter sinon)
+#jdkRpmBin: 'http://pole-id.in.ac-orleans-tours.fr/bin/jdk/jdk-8u92-linux-x64.rpm'
+
+# Si .tar.gz (laisser vide sinon)
+jdkBin: 'http://pole-id.in.ac-orleans-tours.fr/bin/jdk/jdk-7u67-linux-x64.tar.gz'
+jdkDir: '/opt/jdk-7u67'
+jdkLn: '/opt/jdk-1.7'
+remoteSrc: 'yes' # Si source distante (http) remoteSrc = yes
+
+# Java Unlimited Strength JCE pour java 8 (commenter pour ne pas installer)
+#javaUnlimitedStrengthJceBin: 'http://pole-id.in.ac-orleans-tours.fr/bin/jdk/jce_policy-8.tar.gz'
+#javaUnlimitedStrengthJceBinRemoteSrc: 'yes'

@@ -1,0 +1,34 @@
+---
+
+# Si RPM
+- name: 'Installation rpm'
+  yum:
+    name: '{{ jdkRpmBin }}'
+    state: installed
+  when: jdkRpmBin is defined
+
+# Si tar.gz
+- name: 'Creation des repertoires'
+  file:
+    path: '{{ item }}'
+    state: 'directory'
+  with_items:
+    - '{{ jdkDir }}'
+  when: jdkRpmBin is undefined
+
+- name: 'Installation archive'
+  unarchive:
+    src: '{{ jdkBin }}'
+    remote_src: '{{ remoteSrc }}'
+    dest: '{{ jdkDir }}'
+    extra_opts: '--strip-components=1'
+  when: jdkRpmBin is undefined
+
+# Installation optionnelle de Java Unlimited Strength JCE
+- name: 'Installation de Java Unlimited Strength JCE'
+  unarchive:
+    src: '{{ javaUnlimitedStrengthJceBin }}'
+    dest: '{{ jdkDir if jdkRpmBin is undefined else javaHome | default("/usr/java/default") }}/jre/lib/security'
+    remote_src: '{{ javaUnlimitedStrengthJceBinRemoteSrc }}'
+    extra_opts: '--strip-components=1'
+  when: javaUnlimitedStrengthJceBin is defined
